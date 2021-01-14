@@ -22,7 +22,7 @@ Novels.belongsTo(Authors)
 Authors.belongsTo(Novels)
 
 Genres.belongsToMany(Novels, { through: NovelsGenres })
-Genres.belongsToMany(Genres, { through: NovelsGenres })
+Novels.belongsToMany(Genres, { through: NovelsGenres })
 
 module.exports = {
   Authors,
