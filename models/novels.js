@@ -1,5 +1,3 @@
-const Authors = require('./authors')
-
 const Novels = (connection, Sequelize, Authors) => {
   return connection.define('novels', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
@@ -8,4 +6,4 @@ const Novels = (connection, Sequelize, Authors) => {
   })
 }
 
-module.exports = Authors
+module.exports = Novels

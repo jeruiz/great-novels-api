@@ -26,7 +26,18 @@ module.exports = {
     await queryInterface.createdTable('novels', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       title: { type: Sequelize.STRING, allowNull: false },
-      authorId: { type: Sequelize.INTEGER, reference: { model: Authors, key: 'id' } },
+      authorId: { type: Sequelize.INTEGER, reference: { model: 'authors', key: 'id' } },
+      createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+      },
+      deletedAt: { type: Sequelize.DATE },
+    })
+
+    return queryInterface.createTable('novelsGenres', {
+      genreId: { type: Sequelize.INTEGER, primaryKey: true, reference: { model: 'genres', key: 'id' } },
+      novelId: { type: Sequelize.INTEGER, primaryKey: true, reference: { model: 'novels', key: 'id' } },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
@@ -36,7 +47,11 @@ module.exports = {
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('novelsGenres'),
+    await queryInterface.dropTable('novels'),
+    await queryInterface.dropTable('genres')
 
+    return queryInterface.dropTable('authors')
   }
 }
