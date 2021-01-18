@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const allConfigs = require('../config/sequelize')
+const allConfigs = require('../configs/sequelize')
 const AuthorsModel = require('./authors')
 const GenresModel = require('./genres')
 const NovelsModel = require('./novels')
