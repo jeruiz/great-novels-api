@@ -23,7 +23,7 @@ module.exports = {
       deletedAt: { type: Sequelize.DATE },
     })
 
-    await queryInterface.createdTable('novels', {
+    await queryInterface.createTable('novels', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       title: { type: Sequelize.STRING, allowNull: false },
       authorId: { type: Sequelize.INTEGER, reference: { model: 'authors', key: 'id' } },
