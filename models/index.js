@@ -29,4 +29,5 @@ module.exports = {
   Genres,
   Novels,
   NovelsGenres,
+  Sequelize,
 }
